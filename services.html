@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Rebounding Inc.</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* Base Reset & Variables */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #3b82f6;
+            --secondary: #0284c7;
+            --secondary-hover: #0369a1;
+            --text-dark: #1f2937;
+            --text-light: #4b5563;
+            --bg-light: #f8fafc;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.7;
+            /* Added a soft background so the white cards pop beautifully */
+            background-color: var(--bg-light); 
+            overflow-x: hidden;
+        }
+
+        /* Smooth Load Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+
+        /* Navigation - Glassmorphism Effect */
+        header {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-img { height: 45px; width: auto; border-radius: 50%; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary); letter-spacing: -0.5px; }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text-light);
+            margin-left: 25px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        nav a:hover::after, nav a.active::after { width: 100%; }
+        nav a:hover, nav a.active { color: var(--secondary); }
+
+        /* Page Layout */
+        section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; min-height: 75vh; }
+        .section-title { 
+            text-align: center; 
+            font-size: 2.5rem; 
+            font-weight: 700;
+            color: var(--primary); 
+            margin-bottom: 60px; 
+            letter-spacing: -0.5px;
+        }
+
+        /* Services Grid Upgrades */
+        .services-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 40px; 
+        }
+        .service-card { 
+            background: #fff; 
+            padding: 50px 40px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03); 
+            border: 1px solid rgba(0,0,0,0.03);
+            border-top: 4px solid var(--secondary);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        .service-card:hover { 
+            transform: translateY(-12px); 
+            box-shadow: 0 20px 40px rgba(2, 132, 199, 0.1); 
+            border-top: 4px solid var(--primary);
+        }
+        /* Decorative Background Accent */
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 100px;
+            height: 100px;
+            background: rgba(2, 132, 199, 0.05);
+            border-radius: 50%;
+            z-index: -1;
+            transition: transform 0.6s ease;
+        }
+        .service-card:hover::before {
+            transform: scale(1.5);
+            background: rgba(2, 132, 199, 0.08);
+        }
+        
+        .service-card h3 { 
+            color: var(--primary); 
+            margin-bottom: 20px; 
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        .service-card p {
+            color: var(--text-light);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer { 
+            background: var(--primary); 
+            color: rgba(255,255,255,0.8); 
+            text-align: center; 
+            padding: 40px 20px; 
+            font-size: 0.95rem; 
+        }
+        footer span { color: #fff; font-weight: 600; }
+
+        /* Responsive Tweaks */
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; gap: 15px; }
+            nav a { margin: 0 10px; }
+            .section-title { font-size: 2rem; margin-bottom: 40px; }
+            .service-card { padding: 40px 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo-link">
+                <img src="rebounding-logo.jpeg" alt="Rebounding Inc. Logo" class="logo-img">
+                <span class="logo">Rebounding Inc.</span>
+            </a>
+            <nav>
+                <a href="index.html">About</a>
+                <a href="services.html" class="active">Services</a>
+                <a href="experience.html">Student Experience</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="services">
+            <h2 class="section-title animate-fade">Our Tutoring Services</h2>
+            <div class="services-grid">
+                <div class="service-card animate-fade delay-1">
+                    <h3>Core Subject Mastery</h3>
+                    <p>Reading Comprehension, Writing and Test Taking Strategies.</p>
+                </div>
+                <div class="service-card animate-fade delay-2">
+                    <h3>Study Skills & Focus</h3>
+                    <p>We teach students how to organize their workloads, manage test anxiety, and develop highly effective study routines.</p>
+                </div>
+                <div class="service-card animate-fade delay-3">
+                    <h3>Customized Learning Plans</h3>
+                    <p>Every student receives a personalized assessment to identify gaps from prior school years so we can systematically bridge them.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Rebounding Inc. All rights reserved. | Lead Tutor & Owner: <span>Kenda Smith</span></p>
+    </footer>
+
+</body>
+</html>
