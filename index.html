@@ -196,6 +196,61 @@
             line-height: 1.8;
         }
 
+        /* --- NEW ABOUT CONTENT LAYOUT WITH PHOTO --- */
+        .about-content-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            margin-bottom: 4.5rem;
+        }
+
+        .about-image-container {
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .about-image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px; /* Consistent with Student Experience */
+            box-shadow: 0 15px 35px rgba(46, 26, 18, 0.12);
+            display: block;
+            transition: var(--transition-smooth);
+        }
+        
+        .about-image-container img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 45px rgba(92, 58, 33, 0.18);
+        }
+
+        /* Override generic text-content within the flex wrapper for layout */
+        .about-content-wrapper .text-content {
+            flex: 1.5;
+            text-align: left;
+            margin: 0;
+            max-width: none;
+        }
+
+        /* Mobile responsiveness for the new About layout */
+        @media (max-width: 768px) {
+            .about-content-wrapper {
+                flex-direction: column;
+                gap: 2.5rem;
+                text-align: center;
+                margin-bottom: 3.5rem;
+            }
+
+            .about-image-container {
+                max-width: 300px;
+            }
+
+            .about-content-wrapper .text-content {
+                text-align: center;
+            }
+        }
+        /* --- END OF NEW ABOUT LAYOUT STYLES --- */
+
+
         /* Buttons */
         .btn {
             background: var(--button-gradient);
@@ -567,10 +622,16 @@
         
         <div id="about" class="page active">
             <h2>Welcome to Rebounding Inc.</h2>
-            <div class="text-content">
-                <p>Founded and led by <strong>Kenda Smith</strong>, Rebounding Inc. is dedicated to helping students recover from academic setbacks and spring forward into success. We believe that every student learns differently, which is why we focus on tailored, patient instruction that targets core weaknesses and transforms them into strengths.</p>
+            
+            <div class="about-content-wrapper">
+                <div class="about-image-container">
+                    <img src="headshot.png" alt="Kenda Smith, Founder of Rebounding Inc.">
+                </div>
+                
+                <div class="text-content">
+                    <p>Founded and led by <strong>Kenda Smith</strong>, Rebounding Inc. is dedicated to helping students recover from academic setbacks and spring forward into success. We believe that every student learns differently, which is why we focus on tailored, patient instruction that targets core weaknesses and transforms them into strengths.</p>
+                </div>
             </div>
-
             <div class="home-reviews">
                 <h3>What Parents & Students Say</h3>
                 <div class="review-grid">
@@ -635,6 +696,15 @@
                 <div class="service-card">
                     <h3>Customized Learning Plans</h3>
                     <p>Every student is unique. We conduct comprehensive initial assessments to create personalized roadmaps, adapting our teaching methods to perfectly align with your child's specific learning style and pace.</p>
+                </div>
+            </div>
+
+            <div class="experience-row" style="margin-top: 4rem;">
+                <div class="experience-image-container">
+                    <img src="4.png" alt="Teacher actively tutoring middle school students">
+                </div>
+                <div class="experience-caption-container">
+                    <p>Empowering students through engaged, hands-on learning. We create a supportive environment where middle schoolers feel encouraged to ask questions and inspired to master new concepts together.</p>
                 </div>
             </div>
         </div>
